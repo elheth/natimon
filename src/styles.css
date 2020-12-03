@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+}
+.cf {
+  padding: 20px;
+}
+
+
+.btn-primary.custom-btn {
+  background-color: #6979a7;
+  border-color: #6979a7;
+  padding:10px;
+  font-size: 13px;
+}
+
+.btn-primary.custom-btn:hover,
+.btn-primary.custom-btn:active {
+  background-color: #5c5c5c;
+}
+
+
+.spacer {
+  height: 15px;
+}
+
+.container
+{
+  background-color: #ffffff;
+  padding: 1rem;
+  border: 1px solid grey;
+}

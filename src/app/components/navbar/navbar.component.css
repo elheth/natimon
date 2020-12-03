@@ -1,0 +1,20 @@
+.navbar-custom {
+  background-color: #d9ecf2;
+}
+
+.navbar-custom .nav-item .nav-link {
+  color: #5c5c5c;
+  margin-right: 5px;
+  font-size: 13px;
+  font-family: "Open Sans";
+}
+
+.active {
+  background-color: #5c5c5c;
+  color: #ffffff !important;
+}
+
+.collapse .navbar-brand {
+  color: #ffffff;
+  padding: 10px;
+}

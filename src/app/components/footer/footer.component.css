@@ -1,0 +1,17 @@
+
+footer {
+  background-color: #d9ecf2;
+}
+span {
+  color: black;
+}
+.navbar-custom .nav-item .nav-link {
+  color: #5c5c5c;
+  margin-right: 5px;
+  font-size: 13px;
+  font-family: "Open Sans";
+}
+
+.navbar-custom .nav-item .nav-link:hover {
+  text-decoration: underline;
+}

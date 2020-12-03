@@ -1,0 +1,15 @@
+.background {
+  background-image: url(../../../assets/img/171-istock_000022127896medium.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.rg {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.rg-2 {
+  background-color: rgba(255, 255, 255, 0.7);
+}

@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  background-image: linear-gradient(to bottom, rgb(137, 190, 226), rgb(144, 236, 201));
+  flex-grow: 1;
+}
