@@ -14,6 +14,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -36,7 +38,8 @@ const MaterialComponents = [
   MatExpansionModule,
   ClipboardModule,
   MatListModule,
-  MatCardModule
+  MatCardModule,
+  MatSelectModule
 ];
 
 @NgModule({
