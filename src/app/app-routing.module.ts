@@ -6,7 +6,8 @@ import { TierwohlIndikatorenComponent } from './components/tierwohl-indikatoren/
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   {path: 'indikatoren', component: TierwohlIndikatorenComponent},
   {path: 'soziookonomie', component: SozioOkonomieComponent}
 ];

@@ -15,6 +15,10 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTabsModule} from '@angular/material/tabs';
+
+
 
 
 
@@ -39,7 +43,10 @@ const MaterialComponents = [
   ClipboardModule,
   MatListModule,
   MatCardModule,
-  MatSelectModule
+  MatSelectModule,
+  MatToolbarModule,
+  MatTabsModule
+
 ];
 
 @NgModule({
