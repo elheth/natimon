@@ -137,8 +137,8 @@ export class TierwohlIndikatorenComponent implements OnInit {
   };
 
 allComplete: boolean = false;
-selectedTasks = []
-selectedTasks2 = []
+selectedTasks:any = []
+selectedTasks2:any = []
 
   ngOnInit(){
   }
@@ -165,7 +165,7 @@ selectedTasks2 = []
   berechnung()
   {
     this.selectedTasks = [];
-    let newArr = []
+    // let newArr = []
     for (let entry of this.task.indikatorenTierart) {
 
       for (let entry2 of entry.indikatoren)
@@ -175,7 +175,7 @@ selectedTasks2 = []
       }}
     }
     console.log(this.selectedTasks)
-    this.selectedTasks.forEach(function(item) {
+    /* this.selectedTasks.forEach(function(item) {
       let existing = newArr.filter(function(v, i) {
         return v.gruppeBegriff == item.gruppeBegriff;
       });
@@ -189,7 +189,8 @@ selectedTasks2 = []
       }
     });
 
-    console.log(newArr)
+    console.log(newArr) */
+    this.onFormate(this.selectedTasks)
   }
 
 
@@ -216,7 +217,6 @@ selectedTasks2 = []
 
    berechnung2() {
      this.selectedTasks2 = []
-     let newArr = []
      for (let el of this.newTask.subtasks) {
         if(el.completed == true)
         {
@@ -224,7 +224,13 @@ selectedTasks2 = []
         }
      }
      console.log(this.selectedTasks2)
-     this.selectedTasks2.forEach(function(item) {
+     this.onFormate(this.selectedTasks2)
+
+   }
+
+   private onFormate(element:[{gruppeBegriff, indikatoren}]) {
+     let newArr = []
+     element.forEach(function(item) {
       let existing = newArr.filter(function(v, i) {
         return v.gruppeBegriff == item.gruppeBegriff;
       });
@@ -237,7 +243,6 @@ selectedTasks2 = []
         newArr.push(item);
       }
     });
-
     console.log(newArr)
    }
 }
