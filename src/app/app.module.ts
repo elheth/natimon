@@ -12,6 +12,7 @@ import { MaterialModule } from './material/material.module';
 import { TierwohlIndikatorenComponent } from './components/tierwohl-indikatoren/tierwohl-indikatoren.component';
 import { SozioOkonomieComponent } from './components/sozio-okonomie/sozio-okonomie.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

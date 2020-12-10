@@ -1,0 +1,10 @@
+{
+  "/api": {
+      "target_kommentar": "http://192.168.200.23:8080/ws-natimon/<- für den deployten Webservice http://localhost:8087/",
+      "target": "http://192.168.200.23:8080/ws-natimon/",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "pathRewrite": {"^/api": ""}
+  }
+}

@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, ComponentFactoryResolver, Injector, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-
-
+import { ApiService } from 'src/app/shared/api.service';
+import { Filter } from 'src/app/shared/Filter.model';
+import { IndikatorTyp } from 'src/app/shared/IndikatorTyp';
+import { UserIndikatoren } from 'src/app/shared/UserIndikatoren.model';
+import { UserIndikatorTierart } from 'src/app/shared/UserIndikatorTierart.model';
 
 @Component({
   selector: 'app-tierwohl-indikatoren',
@@ -14,114 +17,108 @@ export class TierwohlIndikatorenComponent implements OnInit {
     indikatorenTierart: [
       {
         id: '0',
+        indikatorTyp: IndikatorTyp.tier,
         gruppeBegriff: "Rind",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
         indikatoren: [
-          {name:'Kalb', completed: false}, {name:'Mastrind', completed: false}, {name:'Milchkuh', completed: false}
+          {name:'Kalb', checked: false}, {name:'Mastrind', checked: false}, {name:'Milchkuh', checked: false}
         ]
       },
       {
         id: '1',
+        indikatorTyp: IndikatorTyp.tier,
         gruppeBegriff: "Schwein",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
         indikatoren: [
-          {name:'Saug', completed: false}, {name:'Zuchstau', completed: false}, {name:'Mastschwein', completed: false}
+          {name:'Saug', checked: false}, {name:'Zuchstau', checked: false}, {name:'Mastschwein', checked: false}
         ]
       },
       {
         id: '2',
+        indikatorTyp: IndikatorTyp.tier,
         gruppeBegriff: "Schaf",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
         indikatoren: [
-          {name:'Lamm', completed: false}, {name:'MilchSchaf', completed: false}, {name:'Fleischschaf', completed: false}
+          {name:'Lamm', checked: false}, {name:'MilchSchaf', checked: false}, {name:'Fleischschaf', checked: false}
         ]
       },
       {
         id: '3',
+        indikatorTyp: IndikatorTyp.tier,
         gruppeBegriff: "Ziege",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
         indikatoren: [
-          {name:'Lamm', completed: false}, {name:'Milchziege', completed: false}, {name:'Fleischziege', completed: false}
+          {name:'Lamm', checked: false}, {name:'Milchziege', checked: false}, {name:'Fleischziege', checked: false}
         ]
       },
       {
         id: '4',
+        indikatorTyp: IndikatorTyp.tier,        
         gruppeBegriff: "Huhn",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
         indikatoren: [
-          {name:'Legehenne', completed: false}, {name:'Masthuhn', completed: false}
+          {name:'Legehenne', checked: false}, {name:'Masthuhn', checked: false}
         ]
       },
       {
         id: '5',
+        indikatorTyp: IndikatorTyp.tier,
         gruppeBegriff: "Pute",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
-        indikatoren: [
-          {name:'pute', completed: false, hidden: true}
-        ]
+        indikatoren: []
       },
       {
         id: '6',
+        indikatorTyp: IndikatorTyp.tier,
         gruppeBegriff: "Karpfen",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
-        indikatoren: [
-          {name:'karpfen', completed: false, hidden: true}
-        ]
+        indikatoren: []
       },
       {
         id: '7',
+        indikatorTyp: IndikatorTyp.tier,
         gruppeBegriff: "Regenbogenforelle",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
-        indikatoren: [
-          {name:'regenbogenforelle', completed: false, hidden: true}
-        ]
+        indikatoren: []
       },
 
       {
         id: '8',
+        indikatorTyp: IndikatorTyp.lebensabschnitt,
         gruppeBegriff: "lebensabschnitt",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
         indikatoren: [
-          {name:'Haltung', completed: false}, {name:'Transport', completed: false},{name:'Schlachtung', completed: false}
+          {name:'Haltung', checked: false}, {name:'Transport', checked: false},{name:'Schlachtung', checked: false}
         ]
       },
       {
         id: '9',
+        indikatorTyp: IndikatorTyp.dimensionDesTierwohls,
         gruppeBegriff: "dimensionDesTierwohls",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
         indikatoren: [
-          {name:'Gesundheit', completed: false}, {name:'Verhalten', completed: false},{name:'Emotionen', completed: false}
+          {name:'Gesundheit', checked: false}, {name:'Verhalten', checked: false},{name:'Emotionen', checked: false}
         ]
       },
 
       {
         id: '10',
+        indikatorTyp: IndikatorTyp.indikatorart,
         gruppeBegriff: "Indikatorart",
-        completed: false,
+        checked: false,
         indeterminate: false,
-        color: 'primary',
         indikatoren: [
-          {name:'tierbezogen', completed: false}, {name:'management-/ressourcenbezogen', completed: false}
+          {name:'tierbezogen', checked: false}, {name:'management-/ressourcenbezogen', checked: false}
         ]
       },
     ]
@@ -129,96 +126,112 @@ export class TierwohlIndikatorenComponent implements OnInit {
 
   newTask = {
     gruppeBegriff: 'Sozio-Ökonomie',
-    completed: false,
-    color: 'primary',
+    checked: false,
+    indeterminate: false,
     subtasks: [
-      {name:'Gesetz', completed: false}, {name:'Förderung', completed: false}, {name:'Konsum', completed: false}, {name:'Produktion', completed: false}
+      {name:'Gesetz', checked: false}, {name:'Förderung', checked: false}, {name:'Konsum', checked: false}, {name:'Produktion', checked: false}
     ]
   };
 
 allComplete: boolean = false;
-selectedTasks = []
+filter: Filter[];
+
 selectedTasks2 = []
 
+constructor(
+  private apiService: ApiService
+) {}
+
   ngOnInit(){
+
+    this.apiService.refTierwohlIndikatoren = this;
   }
- setCheck(completed: boolean, id: number, name: string) {
+
+ setCheck(checked: boolean, id: number, name: string) {
   let count = 0;
 
   for (let entry of this.task.indikatorenTierart[id].indikatoren) {
     if (entry.name == name)
-      entry.completed = completed;
+      entry.checked = checked;
 
-      if (entry.completed) count++;
+      if (entry.checked) count++;
   }
 
     this.task.indikatorenTierart[id].indeterminate =  (count != this.task.indikatorenTierart[id].indikatoren.length) && (count != 0);
-    this.task.indikatorenTierart[id].completed = (this.task.indikatorenTierart[id].indikatoren.length == count);
+    this.task.indikatorenTierart[id].checked = (this.task.indikatorenTierart[id].indikatoren.length == count);
   }
 
-  setAll(completed: boolean, id: number) {
+  setAll(checked: boolean, id: number) {
+    this.task.indikatorenTierart[id].checked = checked;
+    this.task.indikatorenTierart[id].indeterminate = checked;
+
     for (let entry of this.task.indikatorenTierart[id].indikatoren) {
-      this.setCheck(completed, id, entry.name)
+      this.setCheck(checked, id, entry.name)
     }
   }
 
-  berechnung()
-  {
-    this.selectedTasks = [];
-    let newArr = []
+  sendTierwohlIndikatoren(){
+    let userIndikatoren: UserIndikatoren = new UserIndikatoren;
     for (let entry of this.task.indikatorenTierart) {
+      
+      if (!entry.checked && !entry.indeterminate) continue;
 
-      for (let entry2 of entry.indikatoren)
-      {
-        if(entry2.completed) {
-        this.selectedTasks.push({gruppeBegriff:entry.gruppeBegriff, indikatoren:entry2.name});
-      }}
-    }
-    console.log(this.selectedTasks)
-    this.selectedTasks.forEach(function(item) {
-      let existing = newArr.filter(function(v, i) {
-        return v.gruppeBegriff == item.gruppeBegriff;
-      });
-      if (existing.length) {
-        let existingIndex = newArr.indexOf(existing[0]);
-        newArr[existingIndex].indikatoren = newArr[existingIndex].indikatoren.concat(item.indikatoren);
-      } else {
-        if (typeof item.indikatoren == 'string')
-          item.indikatoren = [item.indikatoren];
-        newArr.push(item);
+      switch (+entry.indikatorTyp) { // das Forum sagt, dass das + Notwendig ist um daraus eine Zahl zu machen, sonst funktioniert das nicht sauber.
+        case IndikatorTyp.indikatorart:
+          if (userIndikatoren.indikatorart == null) userIndikatoren.indikatorart = [];
+          for (let entry2 of entry.indikatoren)
+            if (entry2.checked) userIndikatoren.indikatorart.push(entry2.name);
+          break;
+        case IndikatorTyp.dimensionDesTierwohls:
+          if (userIndikatoren.dimensionDesTierwohls == null) userIndikatoren.dimensionDesTierwohls = [];          
+          for (let entry2 of entry.indikatoren)
+            if (entry2.checked) userIndikatoren.dimensionDesTierwohls.push(entry2.name);
+          break;
+        case IndikatorTyp.lebensabschnitt:
+          if (userIndikatoren.lebensabschnitt == null) userIndikatoren.lebensabschnitt = [];    
+          for (let entry2 of entry.indikatoren)
+            if (entry2.checked) userIndikatoren.lebensabschnitt.push(entry2.name);
+          break;
+        case IndikatorTyp.tier:
+          let indikatorenTierart: UserIndikatorTierart = new UserIndikatorTierart;
+          indikatorenTierart.gruppeBegriff = entry.gruppeBegriff;
+          if (userIndikatoren.indikatorenTierart == null) userIndikatoren.indikatorenTierart = [];
+          if (entry.indikatoren.length != 0) indikatorenTierart.indikatoren = [];
+          for (let entry2 of entry.indikatoren)
+            if (entry2.checked) indikatorenTierart.indikatoren.push(entry2.name);
+            userIndikatoren.indikatorenTierart.push(indikatorenTierart);
+          break;
       }
-    });
-
-    console.log(newArr)
+    }
+    console.log(userIndikatoren);
+    console.log(this.filter);
+    this.apiService.postUserIndikatoren(userIndikatoren);
   }
-
-
-
-
+  
       updateAllComplete() {
-        this.allComplete = this.newTask.subtasks != null && this.newTask.subtasks.every(t => t.completed);
+        this.allComplete = this.newTask.subtasks != null && this.newTask.subtasks.every(t => t.checked);
       }
 
       someComplete(): boolean {
         if (this.newTask.subtasks == null) {
           return false;
         }
-        return this.newTask.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
+        return this.newTask.subtasks.filter(t => t.checked).length > 0 && !this.allComplete;
       }
 
-      setAll2(completed: boolean) {
-        this.allComplete = completed;
+      setAll2(checked: boolean) {
+        this.allComplete = checked;
         if (this.newTask.subtasks == null) {
           return;
         }
-        this.newTask.subtasks.forEach(t => t.completed = completed);
+        this.newTask.subtasks.forEach(t => t.checked = checked);
       }
 
    berechnung2() {
      this.selectedTasks2 = []
      let newArr = []
      for (let el of this.newTask.subtasks) {
-        if(el.completed == true)
+        if(el.checked == true)
         {
           this.selectedTasks2.push({gruppeBegriff:this.newTask.gruppeBegriff, indikatoren:el.name})
         }
