@@ -229,7 +229,6 @@ constructor(
 
    berechnung2() {
      this.selectedTasks2 = []
-     let newArr = []
      for (let el of this.newTask.subtasks) {
         if(el.checked == true)
         {
@@ -237,7 +236,13 @@ constructor(
         }
      }
      console.log(this.selectedTasks2)
-     this.selectedTasks2.forEach(function(item) {
+  //   this.onFormate(this.selectedTasks2)
+
+   }
+
+   private onFormate(element:[{gruppeBegriff, indikatoren}]) {
+     let newArr = []
+     element.forEach(function(item) {
       let existing = newArr.filter(function(v, i) {
         return v.gruppeBegriff == item.gruppeBegriff;
       });
@@ -250,7 +255,6 @@ constructor(
         newArr.push(item);
       }
     });
-
     console.log(newArr)
    }
 }
