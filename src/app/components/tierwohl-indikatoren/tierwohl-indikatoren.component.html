@@ -24,7 +24,7 @@
                 >
               </li>
 
-              <div *ngIf="subtask.indikatoren.size != 0">
+              <div *ngIf="subtask.indikatoren.length != 0">
                 <ul>
                   <li *ngFor="let c of subtask.indikatoren">
                     <mat-checkbox
@@ -68,7 +68,7 @@
                 </mat-checkbox>
              <ul>
                   <li *ngFor="let subtask of newTask.subtasks">
-                    <mat-checkbox [(ngModel)]="subtask.completed"
+                    <mat-checkbox [(ngModel)]="subtask.checked"
                                   (ngModelChange)="updateAllComplete()">
                       {{subtask.name}}
                     </mat-checkbox>

@@ -13,6 +13,7 @@ import { TierwohlIndikatorenComponent } from './components/tierwohl-indikatoren/
 import { SozioOkonomieComponent } from './components/sozio-okonomie/sozio-okonomie.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterAnzahlComponent } from './components/filter-anzahl/filter-anzahl.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HomeComponent,
     TierwohlIndikatorenComponent,
-    SozioOkonomieComponent
+    SozioOkonomieComponent,
+    FilterAnzahlComponent
   ],
   imports: [
     BrowserModule,

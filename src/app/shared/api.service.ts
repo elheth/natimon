@@ -24,11 +24,11 @@ export class ApiService {
     }),
   };
 
-  postUserIndikatoren(userIndikatoren : UserIndikatoren) : Filter {
+  /*  postUserIndikatoren(userIndikatoren : UserIndikatoren) : Filter {
     return this.postDataToWebservice(this.endpoint_filteranzahl, userIndikatoren);
-  }
+  } */
 
-  getDataFromWebservice(endPoint : string, paramsObject: any) : Observable<Object>  {
+ /*  getDataFromWebservice(endPoint : string, paramsObject: any) : Observable<Object>  {
     let serviceUrl: string = this.baseUrl + endPoint;
 
     return this.http.get(
@@ -42,8 +42,9 @@ export class ApiService {
         catchError(this.handleError) // then handle the error
       );
   }
+ */
 
-postDataToWebservice(endPoint : string, body: any) : any {
+ /*  postDataToWebservice(endPoint : string, body: any) : any {
   let serviceUrl: string = this.baseUrl + endPoint;
 
   this.http.post(serviceUrl, body).pipe(retry(3), catchError(this.handleError)).subscribe(
@@ -54,8 +55,14 @@ postDataToWebservice(endPoint : string, body: any) : any {
       return response;
     }
   );
-    
-}
+
+} */
+
+
+  postDataToWebservice( body: UserIndikatoren) : any {
+  let serviceUrl: string = this.baseUrl+this.endpoint_filteranzahl
+  return this.http.post(serviceUrl,body).pipe(retry(1), catchError(this.handleError))
+} 
 
   handleError(error) {
     let errorMessage = '';

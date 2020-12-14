@@ -57,7 +57,7 @@ export class TierwohlIndikatorenComponent implements OnInit {
       },
       {
         id: '4',
-        indikatorTyp: IndikatorTyp.tier,        
+        indikatorTyp: IndikatorTyp.tier,
         gruppeBegriff: "Huhn",
         checked: false,
         indeterminate: false,
@@ -173,7 +173,7 @@ constructor(
   sendTierwohlIndikatoren(){
     let userIndikatoren: UserIndikatoren = new UserIndikatoren;
     for (let entry of this.task.indikatorenTierart) {
-      
+
       if (!entry.checked && !entry.indeterminate) continue;
 
       switch (+entry.indikatorTyp) { // das Forum sagt, dass das + Notwendig ist um daraus eine Zahl zu machen, sonst funktioniert das nicht sauber.
@@ -183,12 +183,12 @@ constructor(
             if (entry2.checked) userIndikatoren.indikatorart.push(entry2.name);
           break;
         case IndikatorTyp.dimensionDesTierwohls:
-          if (userIndikatoren.dimensionDesTierwohls == null) userIndikatoren.dimensionDesTierwohls = [];          
+          if (userIndikatoren.dimensionDesTierwohls == null) userIndikatoren.dimensionDesTierwohls = [];
           for (let entry2 of entry.indikatoren)
             if (entry2.checked) userIndikatoren.dimensionDesTierwohls.push(entry2.name);
           break;
         case IndikatorTyp.lebensabschnitt:
-          if (userIndikatoren.lebensabschnitt == null) userIndikatoren.lebensabschnitt = [];    
+          if (userIndikatoren.lebensabschnitt == null) userIndikatoren.lebensabschnitt = [];
           for (let entry2 of entry.indikatoren)
             if (entry2.checked) userIndikatoren.lebensabschnitt.push(entry2.name);
           break;
@@ -205,9 +205,11 @@ constructor(
     }
     console.log(userIndikatoren);
     console.log(this.filter);
-    this.apiService.postUserIndikatoren(userIndikatoren);
+    //this.apiService.postUserIndikatoren(userIndikatoren);
+    this.apiService.postDataToWebservice(userIndikatoren).subscribe(response => console.log(response))
+      console.log('ende')
   }
-  
+
       updateAllComplete() {
         this.allComplete = this.newTask.subtasks != null && this.newTask.subtasks.every(t => t.checked);
       }
